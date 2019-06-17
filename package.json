@@ -1,0 +1,27 @@
+{
+    "name": "markdown-editor",
+    "version": "1.0.0",
+    "description": "poc to achieve something like a marxico editor",
+    "main": "index.html",
+    "scripts": {
+      "start": "node server",
+      "compile": "webpack --config webpack.config.js"
+    },
+    "keywords": [
+      "markdown","editor"
+    ],
+    "author": "pramod aj",
+    "license": "ISC",
+    "dependencies": {      
+      "express": "^4.17.1"
+    },
+    "devDependencies": {
+      "babel-cli": "^6.26.0",
+      "babel-core": "^6.26.0",
+      "babel-loader": "^7.1.2",
+      "babel-preset-env": "^1.6.1",
+      "babel-preset-es2015": "^6.24.1",
+      "webpack": "^3.8.1"
+    }
+  }
+  
