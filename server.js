@@ -11,8 +11,11 @@ const app = express();
 app.use('/', express.static(path.join(__dirname, 'public')));
 
 //middleware to parse request json objects
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+// Parse URL-encoded bodies (as sent by HTML forms)
+app.use(express.urlencoded({extended: false}));
+
+// Parse JSON bodies (as sent by API clients)
+app.use(express.json());
 
 app.get('/', function(req, res){
     res.send('Hello World!');
@@ -24,13 +27,15 @@ app.post('/login', function(req, res) {
 );
 
 app.post("/convert", (req, res)=>{
-    console.log(req.body);
+    // console.log('Parsing', req.body);
     if(typeof req.body.content == 'undefined' || req.body.content == null) {
         res.json(["error", "No data found"]);
     } else {
         const text = req.body.content;
         const html = converter.makeHtml(text);
-        res.json(["markdown", html]);
+        res.json({
+            markdown: html
+        });
     }
 });
 

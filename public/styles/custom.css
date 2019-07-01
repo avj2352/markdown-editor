@@ -20,10 +20,37 @@ body {
 }
 
 #editorContainer {
-    height: 92vh;
-    padding: 0;
+    height: 94vh;
+    padding: 5px 5px;
 }
 
 #editorContainer textarea {
     border-radius: 15px;
+}
+
+
+/* Preview Section styling */
+.preview-section {
+    display: flex;
+    flex-direction: column;    
+    color: rgb(82, 82, 82);    
+}
+
+.preview-section h2 {
+    cursor: pointer;
+}
+
+.preview-section .markdown-render {
+    /* border: 1px solid red; */
+    height: 82vh;
+    overflow-y: scroll;
+}
+
+.preview-section .actions {
+    display: flex;
+    justify-content: flex-end;    
+}
+
+.preview-section .actions button{
+    margin: 5px;
 }

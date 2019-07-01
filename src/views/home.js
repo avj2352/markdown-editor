@@ -1,17 +1,43 @@
+const axios = require('axios');
+
 export const homeView = new Vue({
         el: '#mainPage',
         data:{
-            hello:`Hello There from Vue!`,
-            editorDom:null
+            isHeader:true,
+            editorDom:null,
+            markdownContent:'Enter Content here...',
+            htmlContent:null,
+            titleHeader:'Enter Title Here...'
         },
         methods: {
             init:function() {
-                const textDom = this.editorDom.querySelector('textarea');
-                textDom.value = `Enter Content Here....`;                
+                const textDom = this.editorDom.querySelector('textarea');                  
                 textDom.style.width = `${this.editorDom.clientWidth}px`;
-                textDom.style.height = `${this.editorDom.clientHeight-12}px`;
+                textDom.style.height = `${this.editorDom.clientHeight-10}px`;
                 textDom.style.background = `#36312c`;
                 textDom.style.color = `#ebd1b7`;
+            },
+            changeHeaderToText:function(evt) {
+                this.isHeader = !this.isHeader;
+            },
+            convertMarkdown: function() {                
+
+                const requestBody = new URLSearchParams();
+                const config = {
+                    headers: {
+                      'Content-Type': 'application/x-www-form-urlencoded'
+                    }
+                  }
+                requestBody.append('content', this.markdownContent);
+                console.log('Payload is: ', requestBody);
+                axios.post('/convert', requestBody, config)
+                .then((result)=>{
+                    console.log('Result is: ', result.data);
+                    this.htmlContent = result.data.markdown ? result.data.markdown: '<div>&nbsp;</div>';
+                })
+                .catch((err)=>{
+                    console.log('Error calling /convert', err);
+                });
             }
         },
         mounted: function() {

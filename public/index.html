@@ -29,9 +29,23 @@
       <!-- end:Navbar -->
     <div id="mainPage" class="container-fluid col-12 row">
         <div class="col-lg-6" id="editorContainer">
-          <textarea></textarea>
+          <textarea v-model="markdownContent"></textarea>
         </div>
-        <div class="col-lg-6">Preview</div>
+        <div class="col-lg-6 preview-section">
+            <h1 @click="changeHeaderToText" v-if="isHeader"># {{titleHeader}}</h1>
+            <div class="form-group has-success" v-else="isHeader">
+              <label class="form-control-label" for="inputSuccess1">Minimum 10 characters...</label>
+              <input type="text" v-model="titleHeader" @blur="changeHeaderToText" class="form-control is-valid" id="inputValid">              
+            </div>            
+            <!-- Render Markdown section -->
+            <div class="markdown-render" v-html="htmlContent">
+
+            </div>
+            <div class="actions">
+                <button type="button" @click="convertMarkdown" class="btn btn-danger">Render</button>                
+                <button type="button" class="btn btn-success">Submit</button>
+            </div>
+        </div>
     </div>
     <!-- end:mainPage -->    
     <script src="/scripts/main.bundle.js"></script>
