@@ -1,0 +1,29 @@
+body {
+    margin:0;
+    padding:0;
+}
+
+#mainPage {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 94vh;
+}
+
+.login-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+}
+
+#editorContainer {
+    height: 92vh;
+    padding: 0;
+}
+
+#editorContainer textarea {
+    border-radius: 15px;
+}

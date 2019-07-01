@@ -70,16 +70,68 @@
 "use strict";
 
 
-(function () {
-    function onInit() {
-        var aboutDom = document.querySelector('#about-link');
-        aboutDom.addEventListener('click', function (event) {
-            alert('POC for Markdown editor v1.0');
-        });
-    }
+var _home = __webpack_require__(1);
 
-    window.onload = onInit;
-})(); //IIFE
+var _login = __webpack_require__(2);
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+var homeView = exports.homeView = new Vue({
+    el: '#mainPage',
+    data: {
+        hello: 'Hello There from Vue!',
+        editorDom: null
+    },
+    methods: {
+        init: function init() {
+            var textDom = this.editorDom.querySelector('textarea');
+            textDom.value = 'Enter Content Here....';
+            textDom.style.width = this.editorDom.clientWidth + 'px';
+            textDom.style.height = this.editorDom.clientHeight - 12 + 'px';
+            textDom.style.background = '#36312c';
+            textDom.style.color = '#ebd1b7';
+        }
+    },
+    mounted: function mounted() {
+        var dom = document.querySelector('#mainPage');
+        this.editorDom = document.querySelector('#editorContainer');
+        if (dom) this.init();
+    }
+});
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+var loginView = exports.loginView = new Vue({
+    el: '#loginPage',
+    data: {
+        hello: 'Hello this is the login page'
+    },
+    methods: {
+        init: function init() {
+            alert('Login Page');
+        }
+    },
+    created: function created() {
+        var dom = document.querySelector('#loginPage');
+        if (dom) this.init();
+    }
+});
 
 /***/ })
 /******/ ]);

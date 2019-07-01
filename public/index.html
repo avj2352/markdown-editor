@@ -5,7 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Markdown Editor</title>
-    <link rel="stylesheet" href="/styles/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/styles/bootstrap.min.css"/>    
+    <link rel="stylesheet" href="/styles/custom.css"/>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 </head>
 <body>
     <!-- Navbar -->
@@ -22,9 +25,15 @@
             </li>
           </ul>          
         </div>
-      </nav>
+    </nav>
       <!-- end:Navbar -->
-
+    <div id="mainPage" class="container-fluid col-12 row">
+        <div class="col-lg-6" id="editorContainer">
+          <textarea></textarea>
+        </div>
+        <div class="col-lg-6">Preview</div>
+    </div>
+    <!-- end:mainPage -->    
     <script src="/scripts/main.bundle.js"></script>
 </body>
 </html>

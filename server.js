@@ -1,16 +1,36 @@
 const path = require('path');
 const express = require('express');
+const bodyParser = require('body-parser');
+/**
+ * Import converter library
+ */
+const converter = require('./lib/showdown-converter');
 
 const app = express();
 
 app.use('/', express.static(path.join(__dirname, 'public')));
+
+//middleware to parse request json objects
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+app.get('/', function(req, res){
+    res.send('Hello World!');
+});
+ 
+app.post('/login', function(req, res) {
+    res.send("Authenticated");
+  },
+);
 
 app.post("/convert", (req, res)=>{
     console.log(req.body);
     if(typeof req.body.content == 'undefined' || req.body.content == null) {
         res.json(["error", "No data found"]);
     } else {
-        res.json(["markdown", req.body.content]);
+        const text = req.body.content;
+        const html = converter.makeHtml(text);
+        res.json(["markdown", html]);
     }
 });
 
