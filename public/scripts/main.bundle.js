@@ -931,6 +931,7 @@ var homeView = exports.homeView = new Vue({
             console.log('Payload is: ', requestBody);
             axios.post('/convert', requestBody, config).then(function (result) {
                 console.log('Result is: ', result.data);
+
                 _this.htmlContent = result.data.markdown ? result.data.markdown : '<div>&nbsp;</div>';
             }).catch(function (err) {
                 console.log('Error calling /convert', err);
@@ -941,6 +942,13 @@ var homeView = exports.homeView = new Vue({
         var dom = document.querySelector('#mainPage');
         this.editorDom = document.querySelector('#editorContainer');
         if (dom) this.init();
+    },
+    updated: function updated() {
+        var markdownDom = document.querySelector('.markdown-render');
+        var preList = Array.from(markdownDom.querySelectorAll('pre'));
+        if (preList) preList.map(function (el) {
+            return el.setAttribute('class', 'js language-js');
+        });
     }
 });
 

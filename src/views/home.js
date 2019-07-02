@@ -32,8 +32,8 @@ export const homeView = new Vue({
                 console.log('Payload is: ', requestBody);
                 axios.post('/convert', requestBody, config)
                 .then((result)=>{
-                    console.log('Result is: ', result.data);
-                    this.htmlContent = result.data.markdown ? result.data.markdown: '<div>&nbsp;</div>';
+                    console.log('Result is: ', result.data);                    
+                    this.htmlContent = result.data.markdown ? result.data.markdown: '<div>&nbsp;</div>';                    
                 })
                 .catch((err)=>{
                     console.log('Error calling /convert', err);
@@ -44,5 +44,10 @@ export const homeView = new Vue({
             const dom = document.querySelector('#mainPage');
             this.editorDom = document.querySelector('#editorContainer');             
             if (dom) this.init();
+        },
+        updated: function() {
+            const markdownDom = document.querySelector('.markdown-render');            
+            const preList = Array.from(markdownDom.querySelectorAll('pre'));
+            if ( preList ) preList.map(el => el.setAttribute('class','js language-js'));
         }
 });
