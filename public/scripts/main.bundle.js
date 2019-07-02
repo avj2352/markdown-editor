@@ -931,7 +931,6 @@ var homeView = exports.homeView = new Vue({
             console.log('Payload is: ', requestBody);
             axios.post('/convert', requestBody, config).then(function (result) {
                 console.log('Result is: ', result.data);
-
                 _this.htmlContent = result.data.markdown ? result.data.markdown : '<div>&nbsp;</div>';
             }).catch(function (err) {
                 console.log('Error calling /convert', err);

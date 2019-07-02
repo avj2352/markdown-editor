@@ -48,6 +48,6 @@ export const homeView = new Vue({
         updated: function() {
             const markdownDom = document.querySelector('.markdown-render');            
             const preList = Array.from(markdownDom.querySelectorAll('pre'));
-            if ( preList ) preList.map(el => el.setAttribute('class','js language-js'));
+            if ( preList ) preList.map(el => el.setAttribute('class','js language-js'));            
         }
 });
