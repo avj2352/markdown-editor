@@ -29,10 +29,10 @@ export const homeView = new Vue({
                     }
                   }
                 requestBody.append('content', this.markdownContent);
-                console.log('Payload is: ', requestBody);
+                // console.log('Payload is: ', requestBody);
                 axios.post('/convert', requestBody, config)
                 .then((result)=>{
-                    console.log('Result is: ', result.data);                    
+                    // console.log('Result is: ', result.data);                    
                     this.htmlContent = result.data.markdown ? result.data.markdown: '<div>&nbsp;</div>';                    
                 })
                 .catch((err)=>{
@@ -47,7 +47,8 @@ export const homeView = new Vue({
         },
         updated: function() {
             const markdownDom = document.querySelector('.markdown-render');            
-            const preList = Array.from(markdownDom.querySelectorAll('pre'));
-            if ( preList ) preList.map(el => el.setAttribute('class','js language-js'));            
+            markdownDom.querySelectorAll('pre code').forEach((block) => {
+                hljs.highlightBlock(block);
+              });
         }
 });
