@@ -62,6 +62,10 @@ body {
     font-size: 1.3rem;
 }
 
+.preview-section .markdown-render pre {    
+    border-radius: 10px;
+}
+
 .preview-section .actions {
     display: flex;
     justify-content: flex-end;    
@@ -70,3 +74,5 @@ body {
 .preview-section .actions button{
     margin: 5px;
 }
+
+
